@@ -9,6 +9,8 @@ The **minimal-emacs.d** project is a lightweight and optimized Emacs base (`init
 
 Building the *minimal-emacs.d* `init.el` and `early-init.el` was the result of **extensive research and testing** to fine-tune the best parameters and optimizations for an Emacs configuration. *(More information about the *minimal-emacs.d* features can be found here: [Features](#features).)*
 
+If this enhances your workflow, please show your support by **⭐ starring minimal-emacs.d on GitHub** to help more Emacs users discover its benefits.
+
 <p align="center">
 <img src="https://jamescherti.com/misc/minimal-emacs.d.png" width="50%" />
 </p>
@@ -50,73 +52,75 @@ In addition to *minimal-emacs.d*, startup speed is influenced by your computer's
 ## Table of Contents
 
 - [*minimal-emacs.d* - A Customizable Emacs `init.el` and `early-init.el` that Provides Better Defaults and Faster Startup](#minimal-emacsd---a-customizable-emacs-initel-and-early-initel-that-provides-better-defaults-and-faster-startup)
-  - [Introduction](#introduction)
-  - [Looking for the ideal starter kit to customize Emacs? You have found it.](#looking-for-the-ideal-starter-kit-to-customize-emacs-you-have-found-it)
-    - [Startup](#startup)
-  - [Install minimal-emacs.d](#install-minimal-emacsd)
-    - [Install minimal-emacs.d into `~/.emacs.d`](#install-minimal-emacsd-into-emacsd)
-    - [Alternative: Install minimal-emacs.d into `~/.minimal-emacs.d`](#alternative-install-minimal-emacsd-into-minimal-emacsd)
-  - [Update minimal-emacs.d](#update-minimal-emacsd)
-  - [Customizations: Never modify init.el and early-init.el. Modify these instead...](#customizations-never-modify-initel-and-early-initel-modify-these-instead)
-  - [Debug on error](#debug-on-error)
-  - [Customizations: UI (pre-early-init.el)](#customizations-ui-pre-early-initel)
-    - [How to enable the menu-bar, the tool-bar, dialogs, the contextual menu, and tooltips?](#how-to-enable-the-menu-bar-the-tool-bar-dialogs-the-contextual-menu-and-tooltips)
-    - [Reducing clutter in `~/.emacs.d` by redirecting files to `~/.emacs.d/var/`](#reducing-clutter-in-emacsd-by-redirecting-files-to-emacsdvar)
-  - [Customizations: Packages (post-init.el)](#customizations-packages-post-initel)
-    - [Optimization: Native Compilation](#optimization-native-compilation)
-    - [How to activate recentf, savehist, saveplace, and auto-revert?](#how-to-activate-recentf-savehist-saveplace-and-auto-revert)
-    - [Activating autosave](#activating-autosave)
-      - [auto-save-mode (Prevent data loss in case of crashes)](#auto-save-mode-prevent-data-loss-in-case-of-crashes)
-      - [auto-save-visited-mode (Save file buffers after a few seconds of inactivity)](#auto-save-visited-mode-save-file-buffers-after-a-few-seconds-of-inactivity)
-    - [Code completion with corfu](#code-completion-with-corfu)
-    - [Configuring Vertico, Consult, and Embark](#configuring-vertico-consult-and-embark)
-    - [Code folding](#code-folding)
-    - [Changing the default theme](#changing-the-default-theme)
-    - [Automatic removal of trailing whitespace on save](#automatic-removal-of-trailing-whitespace-on-save)
-    - [Enhancing undo/redo](#enhancing-undoredo)
-    - [Configuring Vim keybindings using Evil?](#configuring-vim-keybindings-using-evil)
-    - [Configuring LSP Servers with Eglot (built-in)](#configuring-lsp-servers-with-eglot-built-in)
-    - [Persisting and Restoring all buffers, windows/split, tab-bar, frames...](#persisting-and-restoring-all-buffers-windowssplit-tab-bar-frames)
-    - [Configuring org-mode](#configuring-org-mode)
-    - [Configuring markdown-mode (e.g., README.md syntax)](#configuring-markdown-mode-eg-readmemd-syntax)
-    - [Tree-sitter Integration (Better Syntax Highlighting)](#tree-sitter-integration-better-syntax-highlighting)
-    - [Auto upgrade Emacs packages](#auto-upgrade-emacs-packages)
-    - [Safely terminating unused buffers](#safely-terminating-unused-buffers)
-    - [Treemacs, a tree layout file explorer (Sidebar file explorer)](#treemacs-a-tree-layout-file-explorer-sidebar-file-explorer)
-    - [Inhibit the mouse](#inhibit-the-mouse)
-    - [Spell checker](#spell-checker)
-    - [Efficient jumps for enhanced productivity](#efficient-jumps-for-enhanced-productivity)
-    - [Asynchronous code formatting without cursor disruption](#asynchronous-code-formatting-without-cursor-disruption)
-    - [Efficient template expansion with snippets](#efficient-template-expansion-with-snippets)
-    - [A better Emacs *help* buffer](#a-better-emacs-help-buffer)
-    - [Enhancing the Elisp development experience](#enhancing-the-elisp-development-experience)
-    - [Showing the tab-bar](#showing-the-tab-bar)
-    - [Changing the Default Font](#changing-the-default-font)
-    - [Persist Text Scale](#persist-text-scale)
-    - [Loading the custom.el file](#loading-the-customel-file)
-    - [Which other customizations can be interesting to add?](#which-other-customizations-can-be-interesting-to-add)
-  - [Customizations: pre-early-init.el](#customizations-pre-early-initel)
-    - [Configuring straight.el](#configuring-straightel)
-    - [Configuring Elpaca (package manager)](#configuring-elpaca-package-manager)
-  - [Frequently asked questions](#frequently-asked-questions)
-    - [Customizing Scroll Recentering](#customizing-scroll-recentering)
-    - [How to display Emacs startup duration?](#how-to-display-emacs-startup-duration)
-    - [How to use MELPA stable?](#how-to-use-melpa-stable)
-    - [How to load a local lisp file for machine-specific configurations?](#how-to-load-a-local-lisp-file-for-machine-specific-configurations)
-    - [How to load Emacs customizations?](#how-to-load-emacs-customizations)
-    - [How to increase gc-cons-threshold?](#how-to-increase-gc-cons-threshold)
-    - [How to prevent Emacs from loading .dir-locals.el files?](#how-to-prevent-emacs-from-loading-dir-localsel-files)
-    - [How to make minimal-emacs.d use an environment variable to change ~/.emacs.d to another directory?](#how-to-make-minimal-emacsd-use-an-environment-variable-to-change-emacsd-to-another-directory)
-    - [Are post-early-init.el and pre-init.el the same file in terms of the logic?](#are-post-early-initel-and-pre-initel-the-same-file-in-terms-of-the-logic)
-    - [Why is the menu bar disabled by default?](#why-is-the-menu-bar-disabled-by-default)
-    - [Why did the author develop minimal-emacs.d?](#why-did-the-author-develop-minimal-emacsd)
-    - [How to keep minimal-emacs.d pre-\*.el and post-\*.el files in a separate directory?](#how-to-keep-minimal-emacsd-pre-el-and-post-el-files-in-a-separate-directory)
-    - [How to make *minimal-emacs.d* install packages in the early-init phase instead of the init phase?](#how-to-make-minimal-emacsd-install-packages-in-the-early-init-phase-instead-of-the-init-phase)
-    - [Testimonials from users](#testimonials-from-users)
-    - [Minimal-emacs.d configurations from users](#minimal-emacsd-configurations-from-users)
-  - [Features](#features)
-  - [Author and license](#author-and-license)
-  - [Links](#links)
+    - [Introduction](#introduction)
+    - [Looking for the ideal starter kit to customize Emacs? You have found it.](#looking-for-the-ideal-starter-kit-to-customize-emacs-you-have-found-it)
+        - [Startup](#startup)
+    - [Install minimal-emacs.d](#install-minimal-emacsd)
+        - [Install minimal-emacs.d into `~/.emacs.d`](#install-minimal-emacsd-into-emacsd)
+        - [Alternative: Install minimal-emacs.d into `~/.minimal-emacs.d`](#alternative-install-minimal-emacsd-into-minimal-emacsd)
+    - [Update minimal-emacs.d](#update-minimal-emacsd)
+    - [Customizations: Never modify init.el and early-init.el. Modify these instead...](#customizations-never-modify-initel-and-early-initel-modify-these-instead)
+    - [Debug on error](#debug-on-error)
+    - [Customizations: UI (pre-early-init.el)](#customizations-ui-pre-early-initel)
+        - [How to enable the menu-bar, the tool-bar, dialogs, the contextual menu, and tooltips?](#how-to-enable-the-menu-bar-the-tool-bar-dialogs-the-contextual-menu-and-tooltips)
+        - [Reducing clutter in `~/.emacs.d` by redirecting files to `~/.emacs.d/var/`](#reducing-clutter-in-emacsd-by-redirecting-files-to-emacsdvar)
+    - [Customizations: Packages (post-init.el)](#customizations-packages-post-initel)
+        - [Optimization: Native Compilation](#optimization-native-compilation)
+        - [How to activate recentf, savehist, saveplace, and auto-revert?](#how-to-activate-recentf-savehist-saveplace-and-auto-revert)
+        - [Activating autosave](#activating-autosave)
+            - [auto-save-mode (Prevent data loss in case of crashes)](#auto-save-mode-prevent-data-loss-in-case-of-crashes)
+            - [auto-save-visited-mode (Save file buffers after a few seconds of inactivity)](#auto-save-visited-mode-save-file-buffers-after-a-few-seconds-of-inactivity)
+        - [Code completion with corfu](#code-completion-with-corfu)
+        - [Configuring Vertico, Consult, and Embark](#configuring-vertico-consult-and-embark)
+        - [Code folding](#code-folding)
+        - [Changing the default theme](#changing-the-default-theme)
+        - [Automatic removal of trailing whitespace on save](#automatic-removal-of-trailing-whitespace-on-save)
+        - [Enhancing undo/redo](#enhancing-undoredo)
+        - [Configuring Vim keybindings using Evil?](#configuring-vim-keybindings-using-evil)
+        - [Configuring LSP Servers with Eglot (built-in)](#configuring-lsp-servers-with-eglot-built-in)
+        - [Persisting and Restoring all buffers, windows/split, tab-bar, frames...](#persisting-and-restoring-all-buffers-windowssplit-tab-bar-frames)
+        - [Configuring org-mode](#configuring-org-mode)
+        - [Configuring markdown-mode (e.g., README.md syntax)](#configuring-markdown-mode-eg-readmemd-syntax)
+        - [Tree-sitter Integration (Better Syntax Highlighting)](#tree-sitter-integration-better-syntax-highlighting)
+        - [Auto upgrade Emacs packages](#auto-upgrade-emacs-packages)
+        - [Safely terminating unused buffers](#safely-terminating-unused-buffers)
+        - [Treemacs, a tree layout file explorer (Sidebar file explorer)](#treemacs-a-tree-layout-file-explorer-sidebar-file-explorer)
+        - [Inhibit the mouse](#inhibit-the-mouse)
+        - [Spell checker](#spell-checker)
+        - [Efficient jumps for enhanced productivity](#efficient-jumps-for-enhanced-productivity)
+        - [Asynchronous code formatting without cursor disruption](#asynchronous-code-formatting-without-cursor-disruption)
+        - [Efficient template expansion with snippets](#efficient-template-expansion-with-snippets)
+        - [A better Emacs *help* buffer](#a-better-emacs-help-buffer)
+        - [Enhancing the Elisp development experience](#enhancing-the-elisp-development-experience)
+        - [Showing the tab-bar](#showing-the-tab-bar)
+        - [Changing the Default Font](#changing-the-default-font)
+        - [Persist Text Scale](#persist-text-scale)
+        - [Loading the custom.el file](#loading-the-customel-file)
+        - [Which other customizations can be interesting to add?](#which-other-customizations-can-be-interesting-to-add)
+    - [Customizations: pre-early-init.el](#customizations-pre-early-initel)
+        - [Configuring straight.el](#configuring-straightel)
+        - [Configuring Elpaca (package manager)](#configuring-elpaca-package-manager)
+    - [Frequently asked questions](#frequently-asked-questions)
+        - [Customizing Scroll Recentering](#customizing-scroll-recentering)
+        - [How to display Emacs startup duration?](#how-to-display-emacs-startup-duration)
+        - [How to get the latest version of all packages? (unstable)](#how-to-get-the-latest-version-of-all-packages-unstable)
+        - [How to use MELPA stable?](#how-to-use-melpa-stable)
+        - [How to load a local lisp file for machine-specific configurations?](#how-to-load-a-local-lisp-file-for-machine-specific-configurations)
+        - [How to prevent Emacs from repeatedly recompiling some Elisp files?](#how-to-prevent-emacs-from-repeatedly-recompiling-some-elisp-files)
+        - [How to load Emacs customizations?](#how-to-load-emacs-customizations)
+        - [How to increase gc-cons-threshold?](#how-to-increase-gc-cons-threshold)
+        - [How to prevent Emacs from loading .dir-locals.el files?](#how-to-prevent-emacs-from-loading-dir-localsel-files)
+        - [How to make minimal-emacs.d use an environment variable to change ~/.emacs.d to another directory?](#how-to-make-minimal-emacsd-use-an-environment-variable-to-change-emacsd-to-another-directory)
+        - [Are post-early-init.el and pre-init.el the same file in terms of the logic?](#are-post-early-initel-and-pre-initel-the-same-file-in-terms-of-the-logic)
+        - [Why is the menu bar disabled by default?](#why-is-the-menu-bar-disabled-by-default)
+        - [Why did the author develop minimal-emacs.d?](#why-did-the-author-develop-minimal-emacsd)
+        - [How to keep minimal-emacs.d pre-\*.el and post-\*.el files in a separate directory?](#how-to-keep-minimal-emacsd-pre-el-and-post-el-files-in-a-separate-directory)
+        - [How to make *minimal-emacs.d* install packages in the early-init phase instead of the init phase?](#how-to-make-minimal-emacsd-install-packages-in-the-early-init-phase-instead-of-the-init-phase)
+        - [Testimonials from users](#testimonials-from-users)
+        - [Minimal-emacs.d configurations from users](#minimal-emacsd-configurations-from-users)
+    - [Features](#features)
+    - [Author and license](#author-and-license)
+    - [Links](#links)
 
 <!-- markdown-toc end -->
 
@@ -241,6 +245,7 @@ Native compilation enhances Emacs performance by converting Elisp code into nati
 ;; Ensure adding the following compile-angel code at the very beginning
 ;; of your `~/.emacs.d/post-init.el` file, before all other packages.
 (use-package compile-angel
+  :demand t
   :ensure t
   :custom
   ;; Set `compile-angel-verbose` to nil to suppress output from compile-angel.
@@ -252,8 +257,9 @@ Native compilation enhances Emacs performance by converting Elisp code into nati
   ;; files. If you choose to remove this push to `compile-angel-excluded-files'
   ;; and compile your pre/post-init files, ensure you understand the
   ;; implications and thoroughly test your code. For example, if you're using
-  ;; `use-package', you'll need to explicitly add `(require 'use-package)` at
-  ;; the top of your init file.
+  ;; the `use-package' macro, you'll need to explicitly add:
+  ;; (eval-when-compile (require 'use-package))
+  ;; at the top of your init file.
   (push "/init.el" compile-angel-excluded-files)
   (push "/early-init.el" compile-angel-excluded-files)
   (push "/pre-init.el" compile-angel-excluded-files)
@@ -1561,7 +1567,7 @@ To configure the *persist-text-scale* package, add the following to your `~/.ema
 
 ### Loading the custom.el file
 
-**NOTE:** The author advises against loading `custom.el`. To disable it, set `custom-file` to the null device using `(setq custom-file null-device)`. Users are instead encouraged to define their configuration programmatically in files such as `post-init.el`. Maintaining configuration programmatically offers several advantages: it ensures reproducibility and facilitates version control. This makes it easier to understand, audit, and evolve the configuration over time.
+**NOTE:** The author advises against loading `custom.el`. Users are instead encouraged to define their configuration programmatically in files such as `post-init.el`. Maintaining configuration programmatically offers several advantages: it ensures reproducibility and facilitates version control. This makes it easier to understand, audit, and evolve the configuration over time.
 
 In Emacs, customization variables modified via the UI (e.g., `M-x customize`) are typically stored in a separate file, commonly named `custom.el`. To ensure these settings are loaded during Emacs initialization, it is necessary to explicitly load this file if it exists. To accomplish this, add the following form to your `~/.emacs.d/post-init.el`:
 
@@ -1847,6 +1853,124 @@ Add the following to your `~/.emacs.d/pre-early-init.el` file:
 
 (Alternatively, you may use the built-in `M-x emacs-init-time` command to obtain the startup duration. However, `emacs-init-time` does not account for the portion of the startup process that occurs after `after-init-time`.)
 
+### How to get the latest version of all packages? (unstable)
+
+By default, *minimal-emacs.d* is configured to prioritize packages from [GNU ELPA](https://elpa.gnu.org/) and [NonGNU ELPA](https://elpa.nongnu.org/) repositories over [MELPA](https://melpa.org/), ensuring greater stability.
+
+If you prefer to obtain the latest packages from MELPA to access new features and improvements, you can adjust the priority so that Emacs `use-package` retrieves the newest versions from MELPA before consulting the stable GNU and NonGNU repositories. While MELPA packages are generally regarded as less stable, actual breakages are uncommon; over the past year, only a single package (package-lint) out of 146 packages in the author’s configuration experienced a brief disruption, which was quickly resolved.
+
+Benefit:
+
+* Ensures access to the **most recent package versions**, enabling early adoption of new features, performance improvements, and upstream bug fixes.
+* Prioritizing MELPA provides a **broader selection of cutting-edge packages**, including experimental or niche tools that may not yet exist in stable archives.
+
+Drawback:
+
+* Exposure to **potential instability**, as MELPA packages are often built from the latest commits without extensive regression testing.
+* May require **periodic maintenance**, such as resolving dependency conflicts or adapting to API changes in packages that evolve rapidly. (actual breakages are uncommon.)
+
+To ensure that Emacs always installs or updates to the newest versions of all packages, add the following configuration to `~/.emacs.d/post-early-init.el`:
+
+```elisp
+;; Obtain the latest packages from MELPA to access new features and
+;; improvements. While MELPA packages are generally regarded as less stable,
+;; actual breakages are uncommon; over the past year, only a single package
+;; (package-lint) out of 146 packages in the minimal-emacs.d author’s
+;; configuration experienced a brief disruption, which was quickly resolved.
+(setq package-archive-priorities '(("melpa"        . 90)
+                                   ("gnu"          . 70)
+                                   ("nongnu"       . 60)
+                                   ("melpa-stable" . 50)))
+```
+
+This setup prioritizes **MELPA** over the stable GNU and NonGNU repositories. When multiple archives provide the same package, Emacs will choose the version from the archive with the highest priority. As a result, you will consistently receive the latest available versions from MELPA while still having access to stable GNU and NonGNU packages when MELPA does not provide them.
+
+In the event of a package breakage, you can direct Emacs to install a package from a specific repository. For instance, to ensure that *evil* and *evil-collection* are installed from *melpa-stable*, add the following configuration to `~/.emacs.d/post-early-init.el`:
+```elisp
+(setq package-pinned-packages
+      '((evil            . "melpa-stable")
+        (evil-collection . "melpa-stable")))
+```
+
+Here is a comprehensive `package-pinned-packages` configuration to guarantee that essential packages, such as **consult** or **corfu**, are retrieved from a stable repository, while all remaining packages are obtained from MELPA according to the `package-archive-priorities' priorities above:
+```elisp
+(setq package-pinned-packages
+      '((annalist                      . "melpa-stable")
+        (ansible-doc                   . "melpa-stable")
+        (apheleia                      . "melpa-stable")
+        (basic-mode                    . "melpa-stable")
+        (consult-dir                   . "melpa-stable")
+        (corfu-prescient               . "melpa-stable")
+        (dtrt-indent                   . "melpa-stable")
+        (dumb-jump                     . "melpa-stable")
+        (elisp-refs                    . "melpa-stable")
+        (evil-collection               . "melpa-stable")
+        (f                             . "melpa-stable")
+        (flymake-quickdef              . "melpa-stable")
+        (groovy-mode                   . "melpa-stable")
+        (highlight-defined             . "melpa-stable")
+        (markdown-toc                  . "melpa-stable")
+        (org-appear                    . "melpa-stable")
+        (package-lint-flymake          . "melpa-stable")
+        (parent-mode                   . "melpa-stable")
+        (php-mode                      . "melpa-stable")
+        (prescient                     . "melpa-stable")
+        (s                             . "melpa-stable")
+        (tocus                         . "melpa-stable")
+        (treesit-auto                  . "melpa-stable")
+        (vertico-prescient             . "melpa-stable")
+        (visual-fill-column            . "melpa-stable")
+        (yasnippet-snippets            . "melpa-stable")
+        (ace-window                    . "gnu")
+        (aggressive-indent             . "gnu")
+        (avy                           . "gnu")
+        (cape                          . "gnu")
+        (compat                        . "gnu")
+        (consult                       . "gnu")
+        (corfu                         . "gnu")
+        (csv-mode                      . "gnu")
+        (dash                          . "gnu")
+        (diff-hl                       . "gnu")
+        (diminish                      . "gnu")
+        (easy-escape                   . "gnu")
+        (embark                        . "gnu")
+        (embark-consult                . "gnu")
+        (expand-region                 . "gnu")
+        (gcmh                          . "gnu")
+        (indent-bars                   . "gnu")
+        (marginalia                    . "gnu")
+        (modus-themes                  . "gnu")
+        (orderless                     . "gnu")
+        (org                           . "gnu")
+        (rainbow-mode                  . "gnu")
+        (transient                     . "gnu")
+        (vertico                       . "gnu")
+        (yasnippet                     . "gnu")
+        (ztree                         . "gnu")
+        (eat                           . "nongnu")
+        (edit-indirect                 . "nongnu")
+        (evil-visualstar               . "nongnu")
+        (exec-path-from-shell          . "nongnu")
+        (git-modes                     . "nongnu")
+        (golden-ratio                  . "nongnu")
+        (goto-chg                      . "nongnu")
+        (gptel                         . "nongnu")
+        (lua-mode                      . "nongnu")
+        (magit                         . "nongnu")
+        (markdown-mode                 . "nongnu")
+        (package-lint                  . "nongnu")
+        (page-break-lines              . "nongnu")
+        (paredit                       . "nongnu")
+        (popup                         . "nongnu")
+        (rainbow-delimiters            . "nongnu")
+        (undo-fu                       . "nongnu")
+        (undo-fu-session               . "nongnu")
+        (wgrep                         . "nongnu")
+        (with-editor                   . "nongnu")
+        (ws-butler                     . "nongnu")
+        (yaml-mode                     . "nongnu")))
+```
+
 ### How to use MELPA stable?
 
 **Note: The minimal-emacs.d author does not recommend using MELPA Stable. Use MELPA instead, which is enabled by default in the minimal-emacs.d configuration.**
@@ -1860,16 +1984,13 @@ Here are the key differences between **MELPA** (the default repository used in m
 If you prefer MELPA Stable over MELPA, you can add MELPA Stable and prioritize it. To ensure packages are fetched from MELPA Stable first, add the following configuration to `~/.emacs.d/post-early-init.el`:
 
 ```elisp
-;; Add melpa-stable to `package-archives'
-(push '("melpa-stable" . "https://stable.melpa.org/packages/") package-archives)
-
 ;; This change increases MELPA Stable priority to 70, above MELPA,
 ;; ensuring that MELPA is preferred for package installations
 ;; over MELPA Stable.
-(setq package-archive-priorities '(("gnu"    . 99)
-                                   ("nongnu" . 80)
+(setq package-archive-priorities '(("gnu"          . 90)
+                                   ("nongnu"       . 80)
                                    ("melpa-stable" . 70)
-                                   ("melpa"  . 0)))
+                                   ("melpa"        . 60)))
 ```
 
 ### How to load a local lisp file for machine-specific configurations?
@@ -1882,6 +2003,31 @@ Add the following line to the end of your `post-init.el` file:
 This allows `local.el` to load, enabling custom configurations specific to the machine.
 
 (Ensure that `local.el` is in the same directory as `post-init.el`.)
+
+### How to prevent Emacs from repeatedly recompiling some Elisp files?
+
+In certain Emacs configurations, specific files may be recompiled repeatedly during startup.
+```elisp
+Compiling /snap/emacs/current/usr/share/emacs/lisp/org/org-loaddefs.el.gz...
+Compiling /snap/emacs/current/usr/share/emacs/etc/themes/modus-vivendi-theme.el...
+```
+
+This behavior arises because Emacs performs native compilation on specific Elisp files, and in many scenarios, it is desirable to prevent compilation of files that fail during the process.
+
+Emacs can be configured to bypass native compilation for files whose paths match a list of regular expression patterns by setting `native-comp-jit-compilation-deny-list`. For example:
+```elisp
+(let ((deny-list '("\\(?:[/\\\\]\\.dir-locals\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\]modus-vivendi-theme\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\][^/\\\\]+-loaddefs\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\][^/\\\\]+-autoloads\\.el\\(?:\\.gz\\)?$\\)")))
+  (setq native-comp-jit-compilation-deny-list deny-list)
+  ;; Deprecated
+  (with-no-warnings
+    (setq native-comp-deferred-compilation-deny-list deny-list)
+    (setq comp-deferred-compilation-deny-list deny-list)))
+```
+
+This deny list instructs Emacs to bypass native compilation for files matching the specified patterns, preventing unnecessary or error-prone recompilation while permitting all other files to be compiled normally.
 
 ### How to load Emacs customizations?
 

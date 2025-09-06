@@ -2,8 +2,11 @@
 ;; ~/.config/emacs/post-init.el
 
 ;;; Frame parameters
+;; Start every frame maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Start every frame in fullscreen
-(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 
 ;;; Loading user files and package configurations
 ;;; Source: https://stackoverflow.com/a/2079146
@@ -118,6 +121,7 @@
 
 ;;; Org mode
 (load-package-config "org-mode/org-config.el")
+(load-package-config "org-mode/ox-latex-config.el")
 
 ;;; Markdown mode
 (load-package-config "markdown-mode/markdown-mode-config.el")
@@ -126,6 +130,9 @@
 ;;; Miscellaneous
 ;; Allow Emacs to upgrade built-in packages, such as Org mode
 (setq package-install-upgrade-built-in t)
+
+;; Enable visual line mode globally
+(global-visual-line-mode t)
 
 ;; When Delete Selection mode is enabled, typed text replaces the selection
 ;; if the selection is active.

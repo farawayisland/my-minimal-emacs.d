@@ -8,6 +8,7 @@
 ;; Ensure adding the following compile-angel code at the very beginning
 ;; of your `~/.emacs.d/post-init.el` file, before all other packages.
 (use-package compile-angel
+  :demand t
   :ensure t
   :custom
   ;; Set `compile-angel-verbose` to nil to suppress output from compile-angel.
@@ -35,3 +36,14 @@
   ;; `require'. Additionally, it compiles all packages that were loaded before
   ;; the mode `compile-angel-on-load-mode' was activated.
   (compile-angel-on-load-mode 1))
+
+;; Prevent Emacs from automatically recompiling some Elisp files
+(let ((deny-list '("\\(?:[/\\\\]\\.dir-locals\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\]modus-vivendi-theme\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\][^/\\\\]+-loaddefs\\.el\\(?:\\.gz\\)?$\\)"
+                   "\\(?:[/\\\\][^/\\\\]+-autoloads\\.el\\(?:\\.gz\\)?$\\)")))
+  (setq native-comp-jit-compilation-deny-list deny-list)
+  ;; Deprecated
+  (with-no-warnings
+    (setq native-comp-deferred-compilation-deny-list deny-list)
+    (setq comp-deferred-compilation-deny-list deny-list)))
